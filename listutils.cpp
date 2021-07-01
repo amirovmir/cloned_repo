@@ -17,10 +17,10 @@ void show(Node* head) {
   Node *p = head;
 	while (p != NULL)
 	{
-		cout << p->val << " ";
+		std::cout << p->val << " ";
 		p = p->next;
 	}
-	cout << endl;
+	std::cout << endl;
 }
 
 // Добавления элемента в односвязный список
@@ -36,16 +36,14 @@ void pushNode(Node* head,Node* node) {
 
 // Написать функцию инициализации size элементов списка заданным значением val.
 void initList(Node* head, int size, int val)  {
-  node->field = val;
-	node->next = NULL;
 }
 
 // Написать функцию копирования элементов массива source в новый массив dest
 void copyMas(Node* source, Node* dest) {
   while (source->next != NULL || dest->next != NULL) {
-		dest->val = source->val;
-		source = source->next;
-		dest = dest->next;
+	dest->val = source->val;
+	source = source->next;
+	dest = dest->next;
 }
   
 
@@ -110,7 +108,7 @@ bool testPushNode()
 	init(t);
 	pushNode(t, new Node{ 1 });
 	pushNode(t, new Node{ 2 });
-	if ((t->next->val != 2) or (head->val != 1))
+	if ((t->next->val != 2) or (t->val != 1))
 	{
 		return -1;
 	}
@@ -121,20 +119,20 @@ bool testCopyMas()
 {
   Node* source = new Node;
 	Node* dest = new Node;  
-	Node* source_node = source;
-	Node* dest_node = dest;
+	Node* source_1 = source;
+	Node* dest_1 = dest;
   
 	init(source);
 	init(dest);
   for (int i = 1; i < 11; i++) {
 	  pushNode(source, new Node);
-	  source_node->val = i;
-	  source_node = source_node->next;
+	  source_1->val = i;
+	  source_1 = source_1->next;
   }
   for (int j = 1; j < 11; j++) {
 	  pushNode(dest, new Node);
-	  dest_node->val = 1;
-	  dest_node = dest_node->next;
+	  dest_1->val = 1;
+	  dest_1 = dest_1->next;
   }
   copyMas(source,dest);
   for (int k = 1; k < 11; k++) {
@@ -160,7 +158,7 @@ static void runTest(int (*testFunction)(),const std::string& testName)
 
 int main() 
 {
-  runTest(testInitNode, "Init test");
+	runTest(testInitNode, "Init test");
 	runTest(testPushNode, "Push test");
-  runTest(testCopyMas, "testCopyMas");
+	runTest(testCopyMas, "testCopyMas");
 }
