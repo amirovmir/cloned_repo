@@ -5,83 +5,149 @@ struct Node {
   Node* next;
 };
 
-// Инициализации элемента односвязного списка нулями
+// РРЅРёС†РёР°Р»РёР·Р°С†РёРё СЌР»РµРјРµРЅС‚Р° РѕРґРЅРѕСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР° РЅСѓР»СЏРјРё
 
 void init(Node* node) {
-
+	node->val = 0;
+	node->next = NULL;
 }
 
-// Отображения односвязного списка на экран
+// РћС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕРґРЅРѕСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ
 void show(Node* head) {
-
+  Node *p = head;
+	while (p != NULL)
+	{
+		cout << p->val << " ";
+		p = p->next;
+	}
+	cout << endl;
 }
 
-// Добавления элемента в односвязный список
-void pushNode(Node* head,Node* node) {
-
+// Р”РѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РѕРґРЅРѕСЃРІСЏР·РЅС‹Р№ СЃРїРёСЃРѕРє
+void pushNode(Node* head,Node* node) {  
+  Node* t = head;
+  while (t->next != NULL) 
+		t = t->next;
+  *head = node;
+  t->val = node->val;
+  *head->next = t;  
 } 
 
 
-// Написать функцию инициализации size элементов списка заданным значением val.
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё size СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР° Р·Р°РґР°РЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј val.
 void initList(Node* head, int size, int val)  {
-
+  node->field = val;
+	node->next = NULL;
 }
 
-// Написать функцию копирования элементов массива source в новый массив dest
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ РєРѕРїРёСЂРѕРІР°РЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° source РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ dest
 void copyMas(Node* source, Node* dest) {
-
+  while (source->next != NULL || dest->next != NULL) {
+		dest->val = source->val;
+		source = source->next;
+		dest = dest->next;
 }
   
 
-// Написать функцию сравнение списков source и dest. Если списки равны 0, если не равны -1
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ СЃСЂР°РІРЅРµРЅРёРµ СЃРїРёСЃРєРѕРІ source Рё dest. Р•СЃР»Рё СЃРїРёСЃРєРё СЂР°РІРЅС‹ 0, РµСЃР»Рё РЅРµ СЂР°РІРЅС‹ -1
 int compareMas(Node* source, Node* dest) {
   return 0;
 }
 
 
-// Написать функцию удаления со сдвигом влево n-го элемента списка.
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ СѓРґР°Р»РµРЅРёСЏ СЃРѕ СЃРґРІРёРіРѕРј РІР»РµРІРѕ n-РіРѕ СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°.
 void deleteList(Node* head,int n) {
 
 }
 
 
-// Написать функцию сдвига значений вправо на n-элементов с заполнением крайних элементов нулями
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ СЃРґРІРёРіР° Р·РЅР°С‡РµРЅРёР№ РІРїСЂР°РІРѕ РЅР° n-СЌР»РµРјРµРЅС‚РѕРІ СЃ Р·Р°РїРѕР»РЅРµРЅРёРµРј РєСЂР°Р№РЅРёС… СЌР»РµРјРµРЅС‚РѕРІ РЅСѓР»СЏРјРё
 void rShiftList(Node* head,int n) {
 
 }
 
 
 
-// Написать функцию сдвига значений влево на n-элементов с заполнением крайних элементов нулями.
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ СЃРґРІРёРіР° Р·РЅР°С‡РµРЅРёР№ РІР»РµРІРѕ РЅР° n-СЌР»РµРјРµРЅС‚РѕРІ СЃ Р·Р°РїРѕР»РЅРµРЅРёРµРј РєСЂР°Р№РЅРёС… СЌР»РµРјРµРЅС‚РѕРІ РЅСѓР»СЏРјРё.
 void lShiftList(Node* head,int n) {
 
 }
 
 
-//Написать функцию сдвига значений влево на n-элементов с переносом вытесненных элементов в конец
+//РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ СЃРґРІРёРіР° Р·РЅР°С‡РµРЅРёР№ РІР»РµРІРѕ РЅР° n-СЌР»РµРјРµРЅС‚РѕРІ СЃ РїРµСЂРµРЅРѕСЃРѕРј РІС‹С‚РµСЃРЅРµРЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РєРѕРЅРµС†
 void lRoundShiftMas(Node* head,int n, int size) {
 
 }
 
 
-// Написать функцию вычисления среднего значения элементов списка.
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ РІС‹С‡РёСЃР»РµРЅРёСЏ СЃСЂРµРґРЅРµРіРѕ Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°.
 int averageList(Node* head, int size) {
   return 0;
 }
 
-
-
-// Написать функцию вычисления средне квадратического отклонения элементов списка.
+// РќР°РїРёСЃР°С‚СЊ С„СѓРЅРєС†РёСЋ РІС‹С‡РёСЃР»РµРЅРёСЏ СЃСЂРµРґРЅРµ РєРІР°РґСЂР°С‚РёС‡РµСЃРєРѕРіРѕ РѕС‚РєР»РѕРЅРµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°.
 int skoFromList(Node* head, int size) {
   return 0;
 }
 
+//tests
+bool testInitNode()
+{
+	Node* t = new Node;
 
-int testSkoFromList() {
-  return -1;
+	init(t);
+	if (t->val != 0)
+	{
+		return -1;
+	}
+	return 0;
 }
 
+bool testPushNode()
+{
+	Node* t = new Node;
 
+	init(t);
+	pushNode(t, new Node{ 1 });
+	pushNode(t, new Node{ 2 });
+	if ((t->next->val != 2) or (head->val != 1))
+	{
+		return -1;
+	}
+	return 0;
+}
+
+bool testCopyMas()
+{
+  Node* source = new Node;
+	Node* dest = new Node;  
+	Node* source_node = source;
+	Node* dest_node = dest;
+  
+	init(source);
+	init(dest);
+  for (int i = 1; i < 11; i++) {
+	  pushNode(source, new Node);
+	  source_node->val = i;
+	  source_node = source_node->next;
+  }
+  for (int j = 1; j < 11; j++) {
+	  pushNode(dest, new Node);
+	  dest_node->val = 1;
+	  dest_node = dest_node->next;
+  }
+  copyMas(source,dest);
+  for (int k = 1; k < 11; k++) {
+	  if (source->val != dest->val)
+    { 
+      return -1;
+    }
+	  source = source->next;
+	  dest = dest->next;	
+  }
+  return 0;    
+}
+  
 static void runTest(int (*testFunction)(),const std::string& testName)
 {
   if(testFunction()==0)
@@ -92,8 +158,9 @@ static void runTest(int (*testFunction)(),const std::string& testName)
 
 
 
-int main() {
-  runTest(testSkoFromList,"testSkoFromList");
-
-
+int main() 
+{
+  runTest(testInitNode, "Init test");
+	runTest(testPushNode, "Push test");
+  runTest(testCopyMas, "testCopyMas");
 }
