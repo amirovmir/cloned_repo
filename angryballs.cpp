@@ -1,99 +1,164 @@
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
 
 /*
-¬‡Ë‡ÌÚ 2
-
-–‡Á‡·ÓÚ‡Ú¸ ÔÓ„‡ÏÏÛ ‰Îˇ ÏÓ‰ÂÎËÓ‚‡ÌËˇ ÔÓÎÂÚ‡ ·Ó¯ÂÌÌÓ„Ó Ò ‚˚ÒÓÚ˚ h  ÒÓ ÒÍÓÓÒÚ¸˛ v ¯‡ËÍ‡ Ï‡ÒÒÓÈ m. œË ÒÓÛ‰‡ÂÌËË Ò ÁÂÏÎÂÈ ¯‡ËÍ ÔËÎËÔ‡ÂÚ Í ÔÓ‚ÂıÌÓÒÚË.
-œÓ„‡ÏÏ‡ ‰ÓÎÊÌ‡ ËÏÂÚ¸ ÙÛÌÍˆËË:
-- ¬˚˜ËÒÎÂÌËˇ ÔÓÎÓÊÂÌËˇ (h) Ë Ô‡‡ÏÂÚÓ‚ ‰‚ËÊÂÌËˇ ¯‡ËÍ‡ (v, a) ˜ÂÂÁ Á‡‰‡ÌÌ˚È ÔÓÏÂÊÛÚÓÍ ‚ÂÏÂÌË
-- œÓÁ‚ÓÎˇÚ¸ Á‡ÔËÒ˚‚‡Ú¸ Ô‡‡ÏÂÚ˚ ‰‚ËÊÂÌËˇ ¯‡ËÍ‡ Ë ÏÂÚÍÛ ‚ÂÏÂÌËË ‚ Ó‰ÌÓÒ‚ˇÁÌ˚È ÒÔËÒÍÓ
-- œÂ˜‡Ú‡Ú¸ Ì‡ ˝Í‡Ì ËÌÙÓÏ‡ˆË˛ Ó Ú‡ÂÍÚÓËË ‰‚ËÊÂÌËˇ ¯‡ËÍ‡ Á‡ Á‡‰‡ÌÌ˚È ÔÓÏÂÊÛÚÓÍ ‚ÂÏÂÌË
+–í–∞—Ä–∏–∞–Ω—Ç 2
+–†–∞–∑—Ä–∞–±–æ—Ç–∞—Ç—å –ø—Ä–æ–≥—Ä–∞–º–º—É –¥–ª—è –º–æ–¥–µ–ª–∏—Ä–æ–≤–∞–Ω–∏—è –ø–æ–ª–µ—Ç–∞ –±—Ä–æ—à–µ–Ω–Ω–æ–≥–æ —Å –≤—ã—Å–æ—Ç—ã h  —Å–æ —Å–∫–æ—Ä–æ—Å—Ç—å—é v —à–∞—Ä–∏–∫–∞ –º–∞—Å—Å–æ–π m.
+–ü—Ä–∏ —Å–æ—É–¥–∞—Ä–µ–Ω–∏–∏ —Å –∑–µ–º–ª–µ–π —à–∞—Ä–∏–∫ –ø—Ä–∏–ª–∏–ø–∞–µ—Ç –∫ –ø–æ–≤–µ—Ä—Ö–Ω–æ—Å—Ç–∏.
+–ü—Ä–æ–≥—Ä–∞–º–º–∞ –¥–æ–ª–∂–Ω–∞ –∏–º–µ—Ç—å —Ñ—É–Ω–∫—Ü–∏–∏:
+- –í—ã—á–∏—Å–ª–µ–Ω–∏—è –ø–æ–ª–æ–∂–µ–Ω–∏—è (h) –∏ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ –¥–≤–∏–∂–µ–Ω–∏—è —à–∞—Ä–∏–∫–∞ (v, a) —á–µ—Ä–µ–∑ –∑–∞–¥–∞–Ω–Ω—ã–π –ø—Ä–æ–º–µ–∂—É—Ç–æ–∫ –≤—Ä–µ–º–µ–Ω–∏
+- –ü–æ–∑–≤–æ–ª—è—Ç—å –∑–∞–ø–∏—Å—ã–≤–∞—Ç—å –ø–∞—Ä–∞–º–µ—Ç—ã –¥–≤–∏–∂–µ–Ω–∏—è —à–∞—Ä–∏–∫–∞ –∏ –º–µ—Ç–∫—É –≤—Ä–µ–º–µ–Ω–∏–∏ –≤ –æ–¥–Ω–æ—Å–≤—è–∑–Ω—ã–π —Å–ø–∏—Å–æ–∫
+- –ü–µ—á–∞—Ç–∞—Ç—å –Ω–∞ —ç–∫—Ä–∞–Ω –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—é –æ —Ç—Ä–∞–µ–∫—Ç–æ—Ä–∏–∏ –¥–≤–∏–∂–µ–Ω–∏—è —à–∞—Ä–∏–∫–∞ –∑–∞ –∑–∞–¥–∞–Ω–Ω—ã–π –ø—Ä–æ–º–µ–∂—É—Ç–æ–∫ –≤—Ä–µ–º–µ–Ω–∏
+- –¢–µ—Å—Ç—ã
 */
 
 const float g = 9.81;
 
 struct Ball {
-    float h;
-    float v;
-    float m;
-    float t;
-    float a;
+	float h;
+	float v;
+	float a;
+	float t;
 	Ball* next;
 };
 
-void init(Ball* a) {
-	a->h = 0;
-	a->v = 0;
-	a->m = 0;
-	a->t = 0;
-	a->a = -g;
-	a->next = NULL;
+void init(Ball* ball) {
+	ball->t = 0;
+	ball->h = 0;
+	ball->v = 0;
+	ball->a = 0;
+	ball->next = NULL;
 };
 
-// Õ‡ÔÂ˜‡Ú‡Ú¸ Ì‡ ˝Í‡Ì Ô‡‡ÏÂÚ˚ ÔÓÎÂÚ‡ ¯‡ËÍ‡
-void show(Ball* ball) {
-	while (ball->next != NULL) {
-		cout << "h= " << ball->h << endl;
-		cout << "v= " << ball->v << endl;
-		cout << "t= " << ball->t << endl;
-		cout << "a= " << ball->a << endl;
+void pushData(Ball* ls, float h, float v, float a, float t) {
+	Ball* p = ls;
+	while (p->next != NULL)
+		p = p->next;
 
-		ball = ball->next;
-	}
-	cout << endl;
+	p->t = t;
+	p->h = h;
+	p->v = v;
+	p->a = a;
+	p->next = new Ball;
+	init(p->next);
 };
 
-// ÃÓ‰ÂÎËÓ‚‡ÌËÂ ËÁÏÂÌÂÌËˇ ÔÓÎÓÊÂÌËˇ ¯‡ËÍ‡ Á‡ ‚ÂÏˇ dt ‚ ÒÂÍÛÌ‰‡ı
-void move(Ball* ball, float dt) {
-	float t1, t2, max_h;
-	if (ball->v > 0) {
-		ball->t = t1 = ball->v / ball->a;
-		float dh = ball->v * ball->v / (2 * ball->a);
-		max_h = ball->h + dh;
-		t2 = sqrt(2 * max_h / ball->a);
-		ball->t += t2;
-		show(ball);
+Ball* move(float h, float v, float dt) {
+	Ball* output = new Ball;
+	init(output);
+
+	double a = g;
+	double rise_t, fall_t, max_h;
+	if (v > 0) { //–¥–≤–∏–∂–µ–Ω–∏–µ –≤–≤–µ—Ä—Ö
+		rise_t = v / a;
+		float dh = v * v / (2 * a);
+		max_h = h + dh;
+		fall_t = sqrt(2 * max_h / a);
+
+		pushData(output, h, v, -g, 0);
 	}
-	else {
-		t1 = 0;
-		max_h = ball->h;
-		t2 = (-abs(ball->v) + sqrt(ball->v * ball->v + 2 * ball->a * ball->h)) / ball->a;
-		show(ball);
+	else { //–¥–≤–∏–∂–µ–Ω–∏–µ –≤–Ω–∏–∑
+		rise_t = 0;
+		max_h = h;
+		fall_t = (-abs(v) + sqrt(v * v + 2 * a * h)) / a;
+		pushData(output, h, v, g, 0);
 	}
-	float ct = dt;
-	while (ct <= t1) {
-		ball->h += ball->v * dt - ball->a * dt * dt / 2;
-		ball->v -= ball->a * dt;
-		show(ball);
+
+	double ct = dt; //–∑–∞–ø–∏—Å—ã–≤–∞–µ–º –¥–∞–Ω–Ω—ã–µ –æ –ø–æ–ª–µ—Ç–µ –≤–≤–µ—Ä—Ö –∑–∞ —Ç–∞–∫—Ç
+	while (ct <= rise_t) {
+		h += v * dt - a * dt * dt / 2;
+		v -= a * dt;
+		pushData(output, h, v, -g, ct);
 		ct += dt;
-	}
-	ball->v = ball->a * (ct - t1);
-	ball->h = max_h - ball->a * (ct - t1) * (ct - t1) / 2;
-	show(ball);
+	} 
+	v = a * (ct - rise_t);
+	h = max_h - a * (ct - rise_t) * (ct - rise_t) / 2;
+	pushData(output, h, -v, -g, ct);
 	ct += dt;
-	while (ct < t1 + t2) {
-		ball->h -= ball->v * dt + ball->a * dt * dt / 2;
-		ball->v += ball->a * dt;
-		show(ball);
+	//–∑–∞–ø–∏—Å—ã–≤–∞–µ–º –¥–∞–Ω–Ω—ã–µ –æ –ø–æ–ª–µ—Ç–µ –≤–Ω–∏–∑ –∑–∞ —Ç–∞–∫—Ç
+	while (ct < rise_t + fall_t) {
+		h -= v * dt + a * dt * dt / 2;
+		v += a * dt;
+		pushData(output, h, -v, -g, ct);
 		ct += dt;
 	}
-	show(ball);
-	cout << "\nSimulation finished" << endl;
+	pushData(output, 0, 0, 0, ct);
+	cout << "Simulation finished!" << endl;
+	return output;
 };
+
+void print(Ball* ball, float t) {
+	cout << "t =  |  h =  |  v =  | a =" << endl;
+
+	Ball* cur = ball;
+	while (cur->next != NULL && cur->t <= t) {
+		cout << fixed << showpoint;
+		cout << setprecision(2);
+		cout << (float)cur->t << "\t" << cur->h << "\t" << cur->v << "\t" << cur->a << endl;
+		cur = cur->next;
+	}
+};
+
+bool testInit() {
+	Ball* tmp = new Ball;
+	init(tmp);
+	tmp->next = new Ball;
+	init(tmp->next);
+	if (tmp->a == 0 && tmp->next != NULL)
+		if (tmp->next->a == 0 && tmp->next->next == NULL)
+			return true;
+	return false;
+};
+
+bool testPushData() {
+	Ball* tmp = new Ball;
+	init(tmp);
+
+	pushData(tmp, 1.2345, 1, 1, 0.000001);
+	pushData(tmp->next, -1, 1000, -1.09876, 1);
+
+	if (tmp->h == 1.2345 && tmp->t == 0.000001)
+		if (tmp->next->a == -1.09876 && tmp->next->v == 1000)
+			return true;
+
+	return false;
+};
+
+bool testMove() {
+	Ball* out = move(g, 2*g, 1.0);
+
+	if (out->h - g < 0.001 && out->a == -g && out->v == 2 * g && out->t == 0) {
+		out = out->next;
+		if (out->h - 2.5 * g < 0.001 && out->a == -g && out->v == g && out->t == 1) {
+			out = out->next;
+			if (out->h - 3.0 * g < 0.001 && out->a == -g && out->v == 0 && out->t == 2) {
+				out = out->next;
+				if (out->h - 2.5 * g < 0.001 && out->a == -g && out->v == -g && out->t == 3) {
+					out = out->next;
+					if (out->h - g < 0.001 && out->a == -g && out->v == -2 * g && out->t == 4) {
+						out = out->next;
+						if (out->h == 0 && out->a == 0 && out->v == 0 && out->t == 5) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+void runTest(bool (*testFunction)(), const string& testName) {
+	if (testFunction() == true)
+		std::cout << "Test " << testName << " - OK" << std::endl;
+	else
+		std::cout << "Test " << testName << " - FAIL" << std::endl;
+}
 
 int main() {
-	float t = 0;
-	Ball* a = new Ball;
-	init(a);
-
-	float v0 = a->v = 10;
-	float m = a->m = 1;
-	float h0 = a->h = 100;
-	float dt = 0.01;
-
-	move(a, dt);
-
-	return 0;
-};
+	runTest(testInit, "testInit");
+	runTest(testPushData, "testPushData");
+	runTest(testMove, "testMove");
+}
