@@ -18,7 +18,7 @@ void findContrastingColor (Mat image, vector <vector<Point>> &contours){
 	Scalar greenMax = Scalar(91,255,255);
 	ofstream fout ("data.txt");
 	cvtColor(image, hsv, COLOR_BGR2HSV);
-	medianBlur(hsv,hsv,13); //сглаживание краев и убирает шумы
+	medianBlur(hsv,hsv,13); 
 	Mat clone_source(image.size(), CV_8U);
 	 //detect blue
 	inRange(hsv, blueMin, blueMax, clone_source);
