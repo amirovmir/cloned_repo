@@ -1,0 +1,487 @@
+root@2ceb2bd27c69:/workspace# ./cross-build.sh
+-- The C compiler identification is GNU 9.2.1
+-- The CXX compiler identification is GNU 9.2.1
+-- Check for working C compiler: /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc
+-- Check for working C compiler: /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-g++
+-- Check for working CXX compiler: /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-g++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Cross compiling to: KOS-GNU-static 1.0.1.4
+-- Processor: arm
+-- Compiler: GCC
+-- CMake generates Unix Makefiles
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+-- Found blkdev: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include (found version "0.0.1") found components: CLIENT_LIB 
+-- Found blk_stream: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include (found version "0.0.1")  
+-- Found vfs: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include;/opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include (found version "2.4.0") found components: FS_LIB CLIENT_LIB SERVER_LIB 
+-- Found LWEXT4: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/lib/liblwext4.a  
+-- Found bsp: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include (found version "0.0.1") found components: ENTITY 
+-- Found sdcard: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/include (found version "1.0.1")  
+-- IMAGE_BINARY_DIR_BIN: /workspace/build/einit
+-- IMAGE_BINARY_DIR_BIN: /workspace/build/einit
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/build
+[  5%] Generating EinitQemu-kss/Einit.edl.h
+Scanning dependencies of target EinitQemu-edl
+[  5%] Built target EinitQemu-edl
+[ 10%] Generating _headers_/separate_storage/UserManager.edl
+[ 15%] Generating UserManager.edl.h
+[ 21%] Generating _headers_/separate_storage/UserManager.edl.h
+Scanning dependencies of target separate_storage_user_manager
+[ 21%] Built target separate_storage_user_manager
+Scanning dependencies of target UserManager
+[ 26%] Building CXX object user_manager/CMakeFiles/UserManager.dir/src/user_manager.cpp.obj
+[ 31%] Building CXX object user_manager/CMakeFiles/UserManager.dir/src/main.cpp.obj
+[ 36%] Linking CXX executable UserManager
+[ 36%] Built target UserManager
+[ 42%] Generating _headers_/separate_storage/VfsUser.edl
+[ 47%] Generating VfsUser.edl.h
+[ 52%] Generating _headers_/separate_storage/VfsUser.edl.h
+Scanning dependencies of target separate_storage_vfs_user
+[ 52%] Built target separate_storage_vfs_user
+Scanning dependencies of target VfsUser
+[ 57%] Building C object vfs_user/CMakeFiles/VfsUser.dir/src/vfs_user.c.obj
+[ 63%] Building C object vfs_user/CMakeFiles/VfsUser.dir/__/common/common.c.obj
+/workspace/common/common.c:14:5: warning: no previous prototype for 'MountFileSystem' [-Wmissing-prototypes]
+   14 | int MountFileSystem(unsigned partitionId)
+      |     ^~~~~~~~~~~~~~~
+[ 68%] Linking C executable VfsUser
+[ 68%] Built target VfsUser
+[ 73%] Generating EinitQemu-kss/EinitQemu.c
+Scanning dependencies of target EinitQemu
+[ 78%] Building C object einit/CMakeFiles/EinitQemu.dir/EinitQemu-kss/EinitQemu.c.obj
+[ 84%] Linking C executable EinitQemu
+[ 84%] Built target EinitQemu
+Scanning dependencies of target hdd.img
+
+Generating HDD image...
+INFO. If you are using parted below version 3.3, you may see a permission error before this line.
+          This behaviour was fixed in 3.3, but also in <3.3 it did not cause any real problems, so you can ignore it.
+Creating hdd.img partition from 2048s to 10% of ext2
+INFO. If you are using parted below version 3.3, you may see a permission error before this line.
+          This behaviour was fixed in 3.3, but also in <3.3 it did not cause any real problems, so you can ignore it.
+Creating hdd.img partition from 10% to 55% of ext2
+INFO. If you are using parted below version 3.3, you may see a permission error before this line.
+          This behaviour was fixed in 3.3, but also in <3.3 it did not cause any real problems, so you can ignore it.
+Creating hdd.img partition from 55% to 100% of ext2
+INFO. If you are using parted below version 3.3, you may see a permission error before this line.
+          This behaviour was fixed in 3.3, but also in <3.3 it did not cause any real problems, so you can ignore it.
+Model:  (file)
+Disk /workspace/build/einit/hdd.img: 134217728B
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start      End         Size       Type     File system  Flags
+ 1      1048576B   13631487B   12582912B  primary
+ 2      13631488B  73400319B   59768832B  primary
+ 3      73400320B  134217727B  60817408B  primary
+
+INFO. If you are using parted below version 3.3, you may see a permission error before this line.
+          This behaviour was fixed in 3.3, but also in <3.3 it did not cause any real problems, so you can ignore it.
+mke2fs 1.44.5 (15-Dec-2018)
+Discarding device blocks: done                            
+Creating filesystem with 12288 1k blocks and 3072 inodes
+Filesystem UUID: 219968bb-ad07-45db-b3c1-5d49f969717c
+Superblock backups stored on blocks: 
+	8193
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
+24576+0 records in
+24576+0 records out
+12582912 bytes (13 MB, 12 MiB) copied, 0.0262527 s, 479 MB/s
+mke2fs 1.44.5 (15-Dec-2018)
+Discarding device blocks: done                            
+Creating filesystem with 58368 1k blocks and 14592 inodes
+Filesystem UUID: fb7fc60f-f469-471c-a0d8-a712dfc8fc47
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
+116736+0 records in
+116736+0 records out
+59768832 bytes (60 MB, 57 MiB) copied, 0.112746 s, 530 MB/s
+mke2fs 1.44.5 (15-Dec-2018)
+Discarding device blocks: done                            
+Creating filesystem with 59392 1k blocks and 14848 inodes
+Filesystem UUID: aec0a724-7783-459e-ac56-be52d7558a67
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
+118784+0 records in
+118784+0 records out
+60817408 bytes (61 MB, 58 MiB) copied, 0.114231 s, 532 MB/s
+Cleanup... 
+
+Your HDD image is ready ('hdd.img')!
+Now you can use it with QEMU (i.e. '-hda hdd.img')
+[ 84%] Built target hdd.img
+Scanning dependencies of target sim
+[ 89%] Generating EinitQemu-kss/ksm.module, EinitQemu-kss/security_arm.psl.audit.c
+[ 94%] Generating KasperskyOS image: /workspace/build/einit/kos-qemu-image
+/opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc
+Checking root directory.. /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos
+Checking entity: /workspace/build/user_manager/UserManager... ok
+Checking entity: /workspace/build/vfs_user/VfsUser... ok
+Checking entity: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/sdcard_qemu... ok
+Checking entity: /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/bsp_qemu... ok
+Checking entity: /workspace/build/einit/EinitQemu-kss/ksm.module... ok
+Checking linker.. /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc
+Checking assembler.. /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc
+Checking piggy asm.. /tmp/tmp.iReG2RRmbA
+Checking piggy obj.. /tmp/tmp.bCFcN4pnoO
+.section .romfs, "w", %progbits
+__romfs_Base:
+.long 6
+# [File #0] 'einit', path: '/workspace/build/einit/EinitQemu'
+.long __file0_Name - __romfs_Base
+.long __file0_DataBegin - __romfs_Base
+.long __file0_DataEnd - __file0_DataBegin
+# [File #1] 'UserManager', path: '/workspace/build/user_manager/UserManager'
+.long __file1_Name - __romfs_Base
+.long __file1_DataBegin - __romfs_Base
+.long __file1_DataEnd - __file1_DataBegin
+# [File #2] 'VfsUser', path: '/workspace/build/vfs_user/VfsUser'
+.long __file2_Name - __romfs_Base
+.long __file2_DataBegin - __romfs_Base
+.long __file2_DataEnd - __file2_DataBegin
+# [File #3] 'sdcard_qemu', path: '/opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/sdcard_qemu'
+.long __file3_Name - __romfs_Base
+.long __file3_DataBegin - __romfs_Base
+.long __file3_DataEnd - __file3_DataBegin
+# [File #4] 'bsp_qemu', path: '/opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/bsp_qemu'
+.long __file4_Name - __romfs_Base
+.long __file4_DataBegin - __romfs_Base
+.long __file4_DataEnd - __file4_DataBegin
+# [File #5] 'ksm.module', path: '/workspace/build/einit/EinitQemu-kss/ksm.module'
+.long __file5_Name - __romfs_Base
+.long __file5_DataBegin - __romfs_Base
+.long __file5_DataEnd - __file5_DataBegin
+__file0_Name:
+.asciz "einit"
+__file1_Name:
+.asciz "UserManager"
+__file2_Name:
+.asciz "VfsUser"
+__file3_Name:
+.asciz "sdcard_qemu"
+__file4_Name:
+.asciz "bsp_qemu"
+__file5_Name:
+.asciz "ksm.module"
+.p2align 12
+__file0_DataBegin:
+.incbin "/workspace/build/einit/EinitQemu"
+__file0_DataEnd:
+.p2align 12
+__file1_DataBegin:
+.incbin "/workspace/build/user_manager/UserManager"
+__file1_DataEnd:
+.p2align 12
+__file2_DataBegin:
+.incbin "/workspace/build/vfs_user/VfsUser"
+__file2_DataEnd:
+.p2align 12
+__file3_DataBegin:
+.incbin "/opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/sdcard_qemu"
+__file3_DataEnd:
+.p2align 12
+__file4_DataBegin:
+.incbin "/opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/bin/bsp_qemu"
+__file4_DataEnd:
+.p2align 12
+__file5_DataBegin:
+.incbin "/workspace/build/einit/EinitQemu-kss/ksm.module"
+__file5_DataEnd:
+.p2align 12
+Assembling piggy file:  ... /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc  -x assembler -c  -o /tmp/tmp.bCFcN4pnoO /tmp/tmp.iReG2RRmbA
+ok /tmp/tmp.bCFcN4pnoO
+Generating romfs file...
+Linking image: /workspace/build/einit/kos-qemu-image ... /opt/KasperskyOS-Community-Edition-1.0.1.4/toolchain/bin/arm-kos-gcc -nostdlib  -o /workspace/build/einit/kos-qemu-image -T /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/../libexec/arm-kos/kos-qemu.ld -Wl,-Map=/workspace/build/einit/kos-qemu-image.map /opt/KasperskyOS-Community-Edition-1.0.1.4/sysroot-arm-kos/../libexec/arm-kos/kos-qemu /tmp/tmp.bCFcN4pnoO -lgcc
+ok
+Generating debug symbols file...
+Generating binary image...
+Generating stripped image...
+[100%] Running QEMU with KasperskyOS image...
+WARNING: Image format was not specified for 'hdd.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+ALSA lib pcm_dmix.c:1108:(snd_pcm_dmix_open) unable to open slave
+alsa: Could not initialize DAC
+alsa: Failed to open `default':
+alsa: Reason: No such file or directory
+ALSA lib pcm_dmix.c:1108:(snd_pcm_dmix_open) unable to open slave
+alsa: Could not initialize DAC
+alsa: Failed to open `default':
+alsa: Reason: No such file or directory
+audio: Failed to create voice `lm4549.out'
+[BOOT] Starting...
+[BOOT] Setting up arch flags...
+[BOOT] Preparing memory...
+[BOOT] Preparing loader info...
+[BOOT] Preparing ROMFS...
+[BOOT] Preparing KasperskyOS kernel...
+[BOOT] Preparing trampoline to kernel...
+[BOOT] Preparing page table...
+[BOOT] Preparing modules...
+[BOOT] Freeing loader memory...
+[BOOT] Dump physical memory map
+[BOOT] Starting KasperskyOS...
+
+Loading:
+ _  __                             _           ___  ____
+| |/ /__ _ ___ _ __   ___ _ __ ___| | ___   _ / _ \/ ___|
+| ' // _` / __| '_ \ / _ \ '__/ __| |/ / | | | | | \___ \
+| . \ (_| \__ \ |_) |  __/ |  \__ \   <| |_| | |_| |___) |
+|_|\_\__,_|___/ .__/ \___|_|  |___/_|\_\\__, |\___/|____/
+              |_|                       |___/
+
+
+Built on:   Feb 17 2022 14:13:19
+Board:      vexpress_qemu
+SoC:        v2pca15
+ARCH:       arm
+Git hash:   c2b7dbecfee67a3f259f6aa8a1d9f5ddd935251c-dirty
+
+
+Found CPU: ARMv7
+	Instruction set: ARM Thumb-2 ThumbEE Jazzele 
+	Extensions: GenericTimer Virtualizaton Security PXN 
+	Support standard programmers' model
+System control register:
+	L1 instruction cache: enabled
+	L1 data cache: enabled
+[HAL ] Internal PFN-allocator initiated.
+[HAL ] Private Area begin       : 0x00001000
+[HAL ] Private Area end         : 0x7f7fffff
+[HAL ] Private Area size        : 0x7f7ff000
+[HAL ] Shared Area begin        : 0x81400000
+[HAL ] Shared Area end          : 0xffffffff
+[HAL ] Shared Area size         : 0x7ec00000
+[HAL ] PTE Table Area begin     : 0x80000000
+[HAL ] PTE Table Area end       : 0x803fffff
+[HAL ] PTE Table Area size      : 0x00400000
+[HAL ] Kernel Area begin        : 0x81400000
+[HAL ] Kernel Area end          : 0xfcffffff
+[HAL ] Kernel Area size         : 0x7bc00000
+[HAL ] Internal Area begin      : 0xff400000
+[HAL ] Internal Area end        : 0xffffffff
+[HAL ] Internal Area size       : 0x00c00000
+[HAL ] Temporary Area begin     : 0xff400000
+[HAL ] Temporary Area end       : 0xff486fff
+[HAL ] Temporary Area size      : 0x00087000
+[HAL ] Periphery Area begin     : 0xff800000
+[HAL ] Periphery Area end       : 0xfffeffff
+[HAL ] Periphery Area size      : 0x007f0000
+[HAL ] Temporary area mapped.
+[HAL ] SoC area mapped. begin: 0xff800000, size: 0x00007000
+[HAL ] MMU initialized.
+[HAL ] WXN protection enabled.
+[HAL ] Zero space initialized.
+[HAL ] Found GICv1 with 160 interrupts.
+[HAL ] Interrupts initiated.
+[HAL ] Generic Timer found.
+[HAL ] cpu #0 - 1013MHz
+[HAL ] Cpu initialized.
+[HAL ] Bootstrap Processor's ID - 0
+CPU0 - boot strap processor
+[HAL ] Hardware Abstraction Layer successfully initialized.
+[INIT] Starting core...
+[MM  ] Max pfns                 : 0x00100000
+[MM  ] Max kernel VAD           : 0x40000000
+[MM  ] Max user VAD             : 0x80000000
+[MM  ] Max buddy order          : 0x00000010
+[MM  ] PageInfo size            : 0x00000020
+[MM  ] Pfn DB begin             : 0xc5000000
+[MM  ] Pfn DB end               : 0xc8ffffff
+[MM  ] Pfn DB size              : 0x04000000
+[MM  ] Buddy begin              : 0xc9000000
+[MM  ] Buddy end                : 0xccffffff
+[MM  ] Buddy size               : 0x04000000
+[MM  ] Kernel VAD begin         : 0x81400000
+[MM  ] Kernel VAD end           : 0xfcffffff
+[MM  ] Kernel VAD size          : 0x7bc00000
+[MM  ] Ipc area begin           : 0xf8ff0000
+[MM  ] Ipc area end             : 0xfcfeffff
+[MM  ] Ipc area size            : 0x04000000
+[MM  ] User VAD begin           : 0x00001000
+[MM  ] User VAD end             : 0x7f7fffff
+[MM  ] User VAD size            : 0x7f7ff000
+[MM  ] PFN range #01[__x] begin : 0x00080000
+[MM  ] PFN range #01[__x] end   : 0x0008002a
+[MM  ] PFN range #01[__x] size  : 0x0000002b
+[MM  ] PFN range #02[___] begin : 0x0008002b
+[MM  ] PFN range #02[___] end   : 0x0008002b
+[MM  ] PFN range #02[___] size  : 0x00000001
+[MM  ] PFN range #03[r__] begin : 0x0008002c
+[MM  ] PFN range #03[r__] end   : 0x0008002f
+[MM  ] PFN range #03[r__] size  : 0x00000004
+[MM  ] PFN range #04[rw_] begin : 0x00080030
+[MM  ] PFN range #04[rw_] end   : 0x00080067
+[MM  ] PFN range #04[rw_] size  : 0x00000038
+[MM  ] PFN range #05[rw_] begin : 0x00080068
+[MM  ] PFN range #05[rw_] end   : 0x0008006f
+[MM  ] PFN range #05[rw_] size  : 0x00000008
+[MM  ] PFN range #06[rwx] begin : 0x00080070
+[MM  ] PFN range #06[rwx] end   : 0x00080074
+[MM  ] PFN range #06[rwx] size  : 0x00000005
+[MM  ] PFN range #07[rwx] begin : 0x00080075
+[MM  ] PFN range #07[rwx] end   : 0x00082007
+[MM  ] PFN range #07[rwx] size  : 0x00001f93
+[MM  ] PFN range #08[__x] begin : 0x00082008
+[MM  ] PFN range #08[__x] end   : 0x00082008
+[MM  ] PFN range #08[__x] size  : 0x00000001
+[MM  ] PFN range #09[rw_] begin : 0x00082009
+[MM  ] PFN range #09[rw_] end   : 0x00082009
+[MM  ] PFN range #09[rw_] size  : 0x00000001
+[MM  ] PFN range #10[rwx] begin : 0x0008200a
+[MM  ] PFN range #10[rwx] end   : 0x00082046
+[MM  ] PFN range #10[rwx] size  : 0x0000003d
+[MM  ] PFN range #11[rwx] begin : 0x00082047
+[MM  ] PFN range #11[rwx] end   : 0x0008253d
+[MM  ] PFN range #11[rwx] size  : 0x000004f7
+[MM  ] PFN range #12[rwx] begin : 0x0008253e
+[MM  ] PFN range #12[rwx] end   : 0x0008253e
+[MM  ] PFN range #12[rwx] size  : 0x00000001
+[MM  ] PFN range #13[rw_] begin : 0x0008253f
+[MM  ] PFN range #13[rw_] end   : 0x0008253f
+[MM  ] PFN range #13[rw_] size  : 0x00000001
+[MM  ] PFN range #14[rwx] begin : 0x00082540
+[MM  ] PFN range #14[rwx] end   : 0x000dffff
+[MM  ] PFN range #14[rwx] size  : 0x0005dac0
+[MM  ] Main range mapped begin  : 0xc6000000
+[MM  ] Main range mapped end    : 0xc6bfffff
+[MM  ] Main range mapped size   : 0x00c00000
+[MM  ] PFN database created.
+[MM  ] Buddy subsystem initialized.
+[MM  ] Add low PFN range begin  : 0x80c78000
+[MM  ] Add low PFN range end    : 0x82007fff
+[MM  ] Add low PFN range size   : 0x01390000
+[MM  ] Add low PFN range begin  : 0x8200a000
+[MM  ] Add low PFN range end    : 0x82046fff
+[MM  ] Add low PFN range size   : 0x0003d000
+[MM  ] Add low PFN range begin  : 0x8253e000
+[MM  ] Add low PFN range end    : 0x8253efff
+[MM  ] Add low PFN range size   : 0x00001000
+[MM  ] Add low PFN range begin  : 0x82540000
+[MM  ] Add low PFN range end    : 0xdfffffff
+[MM  ] Add low PFN range size   : 0x5dac0000
+[MM  ] Atomic buddy object created (64 MB).
+[MM  ] Internal HAL allocator changed.
+[MM  ] Atomic mapping created.
+[MM  ] Slab subsystem initialized.
+[MM  ] Anonymous slab-caches created.
+[MM  ] kmalloc/kfree initialized.
+[MM  ] Memory Manager successfully initialized.
+[VMM ] #PF handler was installed.
+[SMP ] UP mode.
+[UID ] Uid allocator initialized.
+[SID ] Sid allocator initialized.
+[IO  ] Initialize MMIO subsystem.
+[IO  ] Initialize DMA subsystem.
+[IO  ] Hardware interrupts successfully initialized.
+[IO  ] Resources registry initialized.
+[VMM ] System address space initialized.
+[VMM ] Internal VMM areas initialized.
+[IPC ] IPC transfer area initialized.
+[TASK] Task infrastructure initialized.
+[SMP ] Idle thread for CPU #0 created.
+[TASK] Scheduler interrupts initialized.
+[TASK] GSI page initialized.
+[PROF] Profiler initialized.
+[TASK] Multitasking infrastructure initialized.
+[TIME] Time infrastructure initialized.
+[ROFS] Files: 6, size: 5206016 (0x004f7000).
+[ROFS] File #00: einit            - size:   617076 (0x00096a74)
+[ROFS] File #01: UserManager      - size:  2071392 (0x001f9b60)
+[ROFS] File #02: VfsUser          - size:  1070280 (0x001054c8)
+[ROFS] File #03: sdcard_qemu      - size:   527956 (0x00080e54)
+[ROFS] File #04: bsp_qemu         - size:   504228 (0x0007b1a4)
+[ROFS] File #05: ksm.module       - size:   397772 (0x000611cc)
+[AU..] Starting core audit...
+[VLOG] Virtual logging subsystem initialized.
+[VMM ] Virtual Memory Manager service initialized.
+[IO  ] I/O subsystem successfully initialized.
+[FS  ] File System Manager successfully initialized.
+[XHCI] XHCIDBG service initialized.
+[CM  ] Connection Manager successfully initialized.
+[KSM ] Module: 'ksm.module' loaded.
+[KSM ] Audit log created.
+[KSM ] Module: 'ksm.module' initialized.
+[KSM ] Server: 'kl.core.Core' executed.
+[KSM ] Security system successfully initialized.
+[INIT] Starting 'Einit' ...
+[INIT] Starting system worker.
+[2022-07-05T18:08:21.357][Info][BSPSR] Server starting.
+[2022-07-05T18:08:21.360][Info][SDCARDSR] Server starting.
+[2022-07-05T18:08:21.364][Info][PL181] Probe PL181
+[2022-07-05T18:08:21.365][Info][PL181] Found PL181
+[2022-07-05T18:08:21.368][Info][BLKDEVCL] Start client initialization.
+[2022-07-05T18:08:21.369][Info][BLKDEVCL] Try to connect to server 'kl.drivers.SDCard' with interface 'kl.drivers.SDCard.sdcard'...
+[2022-07-05T18:08:21.369][Info][BLKDEVCL] Connection with server 'kl.drivers.SDCard'.established.
+[2022-07-05T18:08:21.370][Info][BLKDEVCL] Try to connect to server 'kl.drivers.RawFlash' with interface 'kl.drivers.RawFlash.rawflash'...
+[2022-07-05T18:08:21.370][Info][BLKDEVCL] No server.
+[2022-07-05T18:08:21.370][Info][BLKDEVCL] Try to connect to server 'kl.drivers.ATA' with interface 'kl.drivers.ATA.ata'...
+[2022-07-05T18:08:21.371][Info][BLKDEVCL] No server.
+[2022-07-05T18:08:21.371][Info][BLKDEVCL] Try to connect to server 'kl.drivers.RAMDisk' with interface 'kl.drivers.RAMDisk.ramdisk'...
+[2022-07-05T18:08:21.371][Info][BLKDEVCL] No server.
+[2022-07-05T18:08:21.449][Info][BLKPART] Parsing MBR on 'mmc0' disk ...
+[2022-07-05T18:08:21.452][Info][BLKPART] Add MBR/EBR partition 'mmc0_p0', type: 0x83, offset:   2048, size:  24576 (in sectors)
+[2022-07-05T18:08:21.453][Info][BLKPART] Add MBR/EBR partition 'mmc0_p1', type: 0x83, offset:  26624, size: 116736 (in sectors)
+[2022-07-05T18:08:21.453][Info][BLKPART] Add MBR/EBR partition 'mmc0_p2', type: 0x83, offset: 143360, size: 118784 (in sectors)
+[2022-07-05T18:08:21.455][Info][PL181] Probe PL181
+[2022-07-05T18:08:21.455][Info][PL181] Found PL181
+[2022-07-05T18:08:21.540][Info][BLKDEVSR] Port 'mmc0' successfully registered.
+[2022-07-05T18:08:21.540][Info][PL181] Probe PL181
+[2022-07-05T18:08:21.541][Info][PL181] Found PL181
+[2022-07-05T18:08:21.628][Info][BLKDEVSR] Port 'mmc0_p0' successfully registered.
+[2022-07-05T18:08:21.631][Info][PL181] Probe PL181
+[2022-07-05T18:08:21.632][Info][PL181] Found PL181
+[2022-07-05T18:08:21.718][Info][BLKDEVSR] Port 'mmc0_p1' successfully registered.
+[2022-07-05T18:08:21.719][Info][PL181] Probe PL181
+[2022-07-05T18:08:21.719][Info][PL181] Found PL181
+[2022-07-05T18:08:21.803][Info][BLKDEVSR] Port 'mmc0_p2' successfully registered.
+[2022-07-05T18:08:23.372][Info][NS] Can't connect with Name Server.
+[2022-07-05T18:08:23.378][Info][PL181] Probe PL181
+[2022-07-05T18:08:23.378][Info][PL181] Found PL181
+[UserManager] Try to read '/c/userlist.txt' file
+[UserManager] Success
+[UserManager] User name: Garry
+[UserManager] User name: Potter
+[UserManager] User name: Donald
+[UserManager] User name: Tramp
+[UserManager] User name: Anonim
+[UserManager] User name: Ivan
+[UserManager] User name: Petrov
+[UserManager] User name: Alexander
+[UserManager] User name: Gray
+[UserManager] Try to read unavailable file '/c/certificate.cer'
+[UserManager] Unable to open the '/c/certificate.cer' file. It is correct behaviour.
+
