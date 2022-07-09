@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/mirali/gpio_output'
+make: Leaving directory '/home/mirali/gpio_output'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
