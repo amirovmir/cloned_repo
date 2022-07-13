@@ -1,0 +1,2 @@
+Green object coordinates: [417, 385]
+Yellow object coordinates: [455, 432]

@@ -1,0 +1,3 @@
+/home/mirali/code/build/CMakeFiles/rebuild_cache.dir
+/home/mirali/code/build/CMakeFiles/edit_cache.dir
+/home/mirali/code/build/CMakeFiles/main.dir
