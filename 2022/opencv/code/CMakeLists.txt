@@ -1,0 +1,6 @@
+cmake_minimum_required( VERSION 3.12 )
+project( OpenCV )
+find_package( OpenCV REQUIRED )
+include_directories( "/usr/local/include/opencv4" )
+add_executable( main videocapture.cpp )
+target_link_libraries( main ${OpenCV_LIBS} )
