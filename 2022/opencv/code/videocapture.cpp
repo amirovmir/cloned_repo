@@ -22,13 +22,13 @@ public:
 	vector<vector<Point>> contours;
 	VideoFindColor() {};
 	~VideoFindColor() {};
-	void detectingColor(Mat image, string color, Scalar minColor, Scalar maxColor, vector<vector<Point>> &contours);
+	void detectingColor(Mat image, string color, Scalar minColor, Scalar maxColor, vector<vector<Point>> &contours, ofstream &fout);
 	void writingToFile(Point &pt, string color);
 	void findContrastingColor(Mat image, vector<vector<Point>> &contours);
 	int run();
 };
 
-void VideoFindColor::detectingColor(Mat image, string color, Scalar minColor, Scalar maxColor, vector<vector<Point>> &contours) {
+void VideoFindColor::detectingColor(Mat image, string color, Scalar minColor, Scalar maxColor, vector<vector<Point>> &contours, ofstream &fout) {
 	Mat hsv;
 	cvtColor(image, hsv, COLOR_BGR2HSV);
 	medianBlur(hsv,hsv,13);
@@ -59,10 +59,10 @@ void VideoFindColor::writingToFile(Point &pt, string color) {
 
 void VideoFindColor::findContrastingColor (Mat image, vector<vector<Point>> &contours){
 	fout.open("data.txt");
-	detectingColor(image, "Blue", blueMin, blueMax, contours);
-	detectingColor(image, "Red", redMin, redMax, contours);
-	detectingColor(image, "Green", greenMin, greenMax, contours);
-	detectingColor(image, "Yellow", yellowMin, yellowMax, contours);
+	detectingColor(image, "Blue", blueMin, blueMax, contours, fout);
+	detectingColor(image, "Red", redMin, redMax, contours, fout);
+	detectingColor(image, "Green", greenMin, greenMax, contours, fout);
+	detectingColor(image, "Yellow", yellowMin, yellowMax, contours, fout);
 };
 
 int VideoFindColor::run() {
@@ -78,8 +78,8 @@ int VideoFindColor::run() {
 		findContrastingColor(source, contours);
 		if (waitKey(33) == 27) break;
 		imshow("source", source);
+		fout.close();
 	};
-	fout.close();
 	return 0;
 };
 
