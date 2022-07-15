@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <unistd.h>
 #include <gpio/gpio.h>
 #include <stdbool.h>
@@ -8,25 +11,41 @@
 #include <bsp/bsp.h>
 #endif
 
-#define GPIO_PIN_NUM_IN1 12U
-#define GPIO_PIN_NUM_IN2 13U
+#define GPIO_PIN_NUM_IN2 12U
+#define GPIO_PIN_NUM_IN1 13U
 #define GPIO_PIN_NUM_ENA 6U
 #define GPIO_PIN_NUM_IN4 20U
 #define GPIO_PIN_NUM_IN3 21U
 #define GPIO_PIN_NUM_ENB 26U
 #define DELAY_S 2
 
+#define BUF_SIZE 1024
 #define HIGH 1
 #define LOW 0
 
+/* void connect() {
+    int sock;
+    struct sockaddr_in addr;
+    char buf[BUF_SIZE];
+    sock = socket(AF_INET, SOCK_DGRAM, 0);
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(3425);
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    if(bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+    {
+        perror("bind");
+    }
+} */
+
 void forward(GpioHandle* handle){
     fprintf(stderr, "forward\n");
-     GpioOut(*handle, GPIO_PIN_NUM_IN1, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN2, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_IN4, LOW);
+     GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
+
 }
 
 void stop(GpioHandle* handle) {
@@ -40,52 +59,53 @@ void stop(GpioHandle* handle) {
 
 void backward(GpioHandle* handle) {
     fprintf(stderr, "backward\n");
-    GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
-
-}
-
-void left(GpioHandle* handle) {
-    fprintf(stderr, "left\n");
     GpioOut(*handle, GPIO_PIN_NUM_IN1, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
-}
-
-void right(GpioHandle* handle) {
-     fprintf(stderr, "right\n");
-    GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN2, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_IN4, LOW);
     GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
 }
 
+void left(GpioHandle* handle) {
+    fprintf(stderr, "left\n");
+      GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN4, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
+}
+
+void right(GpioHandle* handle) {
+    fprintf(stderr, "right\n");
+    GpioOut(*handle, GPIO_PIN_NUM_IN1, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN2, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
+
+}
+
 void trajectory(GpioHandle* handle) {
     forward(handle);
-    sleep(1);
-    right(handle);
-    sleep(1);
+    sleep(3);
+    usleep(100000);
+    left(handle);
+    usleep(350000);
     forward(handle);
     sleep(1);
-    right(handle);
-    sleep(1);
+    usleep(700000);
+    left(handle);
+    usleep(350000);
     forward(handle);
-    sleep(1);
-    right(handle);
-    sleep(1);
+    sleep(3);
+    usleep(100000);
+    left(handle);
+    usleep(350000);
     forward(handle);
-    sleep(1);
-    backward(handle);
-    sleep(1);
+    usleep(700000);
     stop(handle);
 }
 
