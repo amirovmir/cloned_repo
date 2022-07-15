@@ -16,15 +16,27 @@ class VideoFindColor {
 	Scalar greenMax = Scalar(89,136,255);
 	Scalar yellowMin = Scalar(0,121,163);
 	Scalar yellowMax = Scalar(52,193,244);
-	ofstream fout;
 	string color;
+	vector<Point2f> dest;
+	vector<Point2f> src;
+	Mat K;
 public:
 	vector<vector<Point>> contours;
-	VideoFindColor() {};
+	VideoFindColor() {
+		src.push_back(Point2f(0, 0));
+		src.push_back(Point2f(100, 0));
+		src.push_back(Point2f(0, 100));
+		src.push_back(Point2f(100, 100));
+		dest.push_back(Point2f(351, 315));
+		dest.push_back(Point2f(125, 135));
+		dest.push_back(Point2f(205, 215));
+		dest.push_back(Point2f(302, 310));
+	};
 	~VideoFindColor() {};
 	void detectingColor(Mat image, string color, Scalar minColor, Scalar maxColor, vector<vector<Point>> &contours, ofstream &fout);
-	void writingToFile(Point &pt, string color);
 	void findContrastingColor(Mat image, vector<vector<Point>> &contours);
+	void findHomograph(Mat im_src, Mat im_dest);
+	void warpImage(Mat img);
 	int run();
 };
 
@@ -43,22 +55,22 @@ void VideoFindColor::detectingColor(Mat image, string color, Scalar minColor, Sc
 		pt1.y = rect.y;
 		pt2.x = rect.x + rect.width;
 		pt2.y = rect.y + rect.height;
-		if (rect.width >= 50 && rect.width <=500 && rect.height >= 10 && rect.height <=500){
+		dest.push_back(Point2f(pt1.x, pt1.y));
+		dest.push_back(Point2f(pt2.x, pt1.y));
+		dest.push_back(Point2f(pt1.x, pt2.y));
+		dest.push_back(Point2f(pt2.x, pt2.y));
+		if (rect.width >= 10 && rect.width <=1000 && rect.height >= 10 && rect.height <=1000){
 		rectangle(image, pt1, pt2, CV_RGB(255,0,0), 1);
 		pt1.x = rect.x + rect.width/2;
 		pt1.y = rect.y + rect.height/2;
 		rectangle(image, pt1, pt1, CV_RGB(0,255,0), 5);
-		writingToFile(pt1, color);
+		fout << color << " object coordinates: " << pt1 << endl;
 		}
 	}
 }
 
-void VideoFindColor::writingToFile(Point &pt, string color) {
-	fout << color << " object coordinates: " << pt << endl;
-}
-
-void VideoFindColor::findContrastingColor (Mat image, vector<vector<Point>> &contours){
-	fout.open("data.txt");
+void VideoFindColor::findContrastingColor (Mat image, vector<vector<Point>> &contours) {
+	ofstream fout("data.txt");
 	detectingColor(image, "Blue", blueMin, blueMax, contours, fout);
 	detectingColor(image, "Red", redMin, redMax, contours, fout);
 	detectingColor(image, "Green", greenMin, greenMax, contours, fout);
@@ -71,17 +83,33 @@ int VideoFindColor::run() {
 		cout << "No camera" << endl;
 		return EXIT_FAILURE;
 	}
+
 	Mat source;
-	namedWindow("source");
+	namedWindow("source", WINDOW_AUTOSIZE);
 	while (1) {
 		cap >> source;
+		resize(source,source,Size(900,900));
 		findContrastingColor(source, contours);
 		if (waitKey(33) == 27) break;
 		imshow("source", source);
-		fout.close();
+		findHomograph(source, source);
 	};
 	return 0;
 };
+
+void VideoFindColor::findHomograph(Mat im_src, Mat im_dest) {
+	Mat H = findHomography(dest, src);
+	Mat im_out;
+	warpPerspective(im_src, im_out, H, im_dest.size());
+	imshow("Warped source image", im_out);
+}
+
+void VideoFindColor::warpImage(Mat img) {
+	Mat img_warp;
+	Mat H = findHomography(src, img);
+	warpPerspective(img, img_warp, H, img.size());
+	imshow("Warp Image", img_warp);
+}
 
 int main(){
 	VideoFindColor img;
