@@ -1,0 +1,15 @@
+entities:
+
+- task: read_from_file.ReadManager
+  path: ReadManager
+  name: read_from_file.ReadManager
+  connections:
+  - target: read_from_file.VfsUser
+    id: {var: _VFS_CONNECTION_ID, include: vfs/defs.h}
+
+- task: read_from_file.VfsUser
+  path: VfsUser
+  name: read_from_file.VfsUser
+@INIT_VfsUser_ENTITY_CONNECTIONS@
+
+@INIT_EXTERNAL_ENTITIES@

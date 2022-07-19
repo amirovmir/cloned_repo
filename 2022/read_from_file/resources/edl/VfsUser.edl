@@ -1,0 +1,6 @@
+entity read_from_file.VfsUser
+
+components
+{
+    vfs: kl.Vfs
+}
