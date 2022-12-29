@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <unistd.h>
 #include <gpio/gpio.h>
 #include <stdbool.h>
@@ -8,51 +11,41 @@
 #include <bsp/bsp.h>
 #endif
 
-#define GPIO_PIN_NUM_IN1 12U
-#define GPIO_PIN_NUM_IN2 13U
+#define GPIO_PIN_NUM_IN2 12U
+#define GPIO_PIN_NUM_IN1 13U
 #define GPIO_PIN_NUM_ENA 6U
 #define GPIO_PIN_NUM_IN4 20U
 #define GPIO_PIN_NUM_IN3 21U
 #define GPIO_PIN_NUM_ENB 26U
 #define DELAY_S 2
 
+#define BUF_SIZE 1024
 #define HIGH 1
 #define LOW 0
 
-/**
- * exceptionPinArr is an array of GPIO pin numbers that should be excluded
- * from the example. This may be necessary if some of the pins are already
- * used for other functions, for example, if the pins are used for UART
- * connections during debugging.
- */
-//const int exceptionPinArr[] = {14, 15};
-//const int pinArr[] = {GPIO_PIN_NUM_IN1, GPIO_PIN_NUM_IN2, GPIO_PIN_NUM_IN3, GPIO_PIN_NUM_IN4, GPIO_PIN_NUM_ENA, GPIO_PIN_NUM_ENB};
-
-/*static bool IsExceptionPin(int pin)
-{
-    bool ret = false;
-
-    for(int i = 0; i < sizeof(exceptionPinArr) / sizeof(int); i++)
+/* void connect() {
+    int sock;
+    struct sockaddr_in addr;
+    char buf[BUF_SIZE];
+    sock = socket(AF_INET, SOCK_DGRAM, 0);
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(3425);
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    if(bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
-        if(exceptionPinArr[i] == pin)
-        {
-            ret = true;
-
-            break;
-        }
+        perror("bind");
     }
-
-    return ret;
-}*/
+} */
 
 void forward(GpioHandle* handle){
     fprintf(stderr, "forward\n");
-    GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
+     GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
     GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
     GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
+
 }
 
 void stop(GpioHandle* handle) {
@@ -76,31 +69,44 @@ void backward(GpioHandle* handle) {
 
 void left(GpioHandle* handle) {
     fprintf(stderr, "left\n");
-    GpioOut(*handle, GPIO_PIN_NUM_IN1, LOW);
+      GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
-}
-
-void right(GpioHandle* handle) {
-     fprintf(stderr, "right\n");
-    GpioOut(*handle, GPIO_PIN_NUM_IN1, HIGH);
-    GpioOut(*handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_IN4, LOW);
     GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
     GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
 }
 
+void right(GpioHandle* handle) {
+    fprintf(stderr, "right\n");
+    GpioOut(*handle, GPIO_PIN_NUM_IN1, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN2, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_IN3, LOW);
+    GpioOut(*handle, GPIO_PIN_NUM_IN4, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_ENA, HIGH);
+    GpioOut(*handle, GPIO_PIN_NUM_ENB, HIGH);
+
+}
+
 void trajectory(GpioHandle* handle) {
     forward(handle);
-    sleep(2);
-    //stop(handle);
-    //right(handle);
-    //sleep(1);
-   // stop(handle);
+    sleep(3);
+    usleep(100000);
+    left(handle);
+    usleep(350000);
+    forward(handle);
+    sleep(1);
+    usleep(700000);
+    left(handle);
+    usleep(350000);
+    forward(handle);
+    sleep(3);
+    usleep(100000);
+    left(handle);
+    usleep(350000);
+    forward(handle);
+    usleep(700000);
+    stop(handle);
 }
 
 int main(int argc, const char *argv[])
@@ -150,36 +156,9 @@ int main(int argc, const char *argv[])
     GpioSetMode(handle, GPIO_PIN_NUM_ENA, GPIO_DIR_OUT);
     GpioSetMode(handle, GPIO_PIN_NUM_ENB, GPIO_DIR_OUT);
 
-    //GpioOut(handle, GPIO_PIN_NUM_ENA, HIGH);
-    //GpioOut(handle, GPIO_PIN_NUM_ENB, HIGH);
-/*
-    for(int i = 0; i < sizeof(pinArr); i++)
-    {
-            if (GpioSetMode(handle, pinArr[i], GPIO_DIR_OUT))
-            {
-                fprintf(stderr, "GpioSetMode for GPIO%d failed\n", i);
-                return -1;
-            }
-    }
-    */
     fprintf(stderr, "Starting move\n");
-   // trajectory(*handle);
-
-    GpioOut(handle, GPIO_PIN_NUM_IN1, HIGH);
-    GpioOut(handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_IN3, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_IN4, HIGH);
-    GpioOut(handle, GPIO_PIN_NUM_ENA, HIGH);
-    GpioOut(handle, GPIO_PIN_NUM_ENB, HIGH);
-
-    sleep(50);
-
-    GpioOut(handle, GPIO_PIN_NUM_IN1, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_IN2, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_IN3, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_IN4, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_ENA, LOW);
-    GpioOut(handle, GPIO_PIN_NUM_ENB, LOW);
+    GpioHandle* p_handle = &handle;
+    trajectory(p_handle);
 
     if(GpioClosePort(handle))
     {
